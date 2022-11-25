@@ -37,7 +37,21 @@ get_source() {
 # Copy files to source
 get_source | while read -r line; do
 	unset CATEGORY
-	CATEGORY="$(basename "$(dirname "$line")")"
-	mkdir -p "$DESTINATION/$CATEGORY"
-	cp "$line" "$DESTINATION/$CATEGORY"
+	unset XCATEGORY
+	CATEGORY="$(echo "$line" | grep -Eo "[0-9][^.]*\.gz$" | sed 's/\.gz$//')"
+
+	# Check if the category is NX (e.g., 3ncurses -> 3X)
+	if [ $(echo "$CATEGORY" | wc -m) -gt 2 ]; then
+		XCATEGORY="$(echo "$CATEGORY" | cut -c -1)X"
+	fi
+
+	# Copy file, and rename if necessary
+	if [ -n "$XCATEGORY" ]; then
+		mkdir -p "$DESTINATION/man$XCATEGORY"
+		cp "$line" "$DESTINATION/man$XCATEGORY/$(basename "$line" | sed "s/$CATEGORY/$XCATEGORY/")"
+	else
+		mkdir -p "$DESTINATION/man$CATEGORY"
+		cp "$line" "$DESTINATION/man$CATEGORY"
+	fi
+
 done

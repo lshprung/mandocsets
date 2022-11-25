@@ -14,7 +14,11 @@ $(DOCSET): getters/$(DOCSET).sh
 
 # Convert to dash docset using python script
 $(DOCSET).docset: $(DOCSET) mandocset.py
+ifndef EXECUTABLE
 	python3 mandocset.py -o $(DOCSET) -p $(DOCSET)/
+else
+	python3 mandocset.py -o $(DOCSET) -p $(DOCSET)/ -e "$(EXECUTABLE)"
+endif
 
 # Remove generated files/directories
 .PHONY: clean

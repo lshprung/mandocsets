@@ -1,0 +1,7 @@
+*
+!.gitignore
+!getters
+!getters/*
+!Makefile
+!mandocset.py
+!README.md

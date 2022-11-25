@@ -1,9 +1,28 @@
 #!/usr/bin/env sh
 
-PACKAGES="ncurses-base
-ncurses-doc
-ncurses-hexedit   
+PACKAGES="lib32ncurses-dev
+lib32ncurses6
+lib32ncursesw6
+lib32tinfo6
+lib64ncurses-dev
+lib64ncurses6
+lib64ncursesw6
+lib64tinfo6
+libncurses-dev
+libncurses5
+libncurses5-dev
+libncurses6
+libncursesw5
+libncursesw5-dev
+libncursesw6
+libncursesw6-udeb
+libtinfo-dev
+libtinfo5
+libtinfo6
+libtinfo6-udeb
+ncurses-base
 ncurses-bin
+ncurses-doc
 ncurses-examples
 ncurses-term"
 

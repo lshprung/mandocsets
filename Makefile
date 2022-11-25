@@ -14,6 +14,7 @@ $(DOCSET): getters/$(DOCSET).sh
 
 # Convert to dash docset using python script
 $(DOCSET).docset: $(DOCSET) mandocset.py
+	rm -rf "$(DOCSET).docset"
 ifndef EXECUTABLE
 	python3 mandocset.py -o $(DOCSET) -p $(DOCSET)/
 else
